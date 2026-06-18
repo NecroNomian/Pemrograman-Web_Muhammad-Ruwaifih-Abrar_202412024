@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir Pendaftaran Mahasiswa Baru</title>
+    <style>
+        /* ===== Reset & Base ===== */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 50%, #f0fdf4 100%);
+            color: #1a2a1a;
+            margin: 0;
+            padding: 36px 16px;
+            min-height: 100vh;
+        }
+
+        /* ===== Wrapper ===== */
+        .page-wrapper {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        /* ===== Header ===== */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header img.logo {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #16a34a;
+            display: block;
+            margin: 0 auto 14px;
+            box-shadow: 0 4px 16px rgba(22, 163, 74, 0.20);
+        }
+
+        .header h1 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #15803d;
+            letter-spacing: 0.3px;
+            line-height: 1.3;
+        }
+
+        .header p.sub {
+            font-size: 0.92rem;
+            color: #6b7280;
+            margin-top: 6px;
+        }
+
+        /* ===== Card ===== */
+        .card {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 6px 28px rgba(22, 163, 74, 0.10);
+            padding: 36px 40px;
+            margin-bottom: 24px;
+            border-top: 4px solid #16a34a;
+        }
+
+        @media (max-width: 540px) {
+            .card {
+                padding: 24px 16px;
+            }
+        }
+
+        /* ===== Fieldset & Legend ===== */
+        fieldset {
+            border: 1.5px solid #bbf7d0;
+            border-radius: 12px;
+            padding: 22px 24px 16px;
+            margin-bottom: 24px;
+        }
+
+        legend {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #15803d;
+            background: #dcfce7;
+            padding: 4px 14px;
+            border-radius: 20px;
+            letter-spacing: 0.2px;
+        }
+
+        /* ===== Form Groups ===== */
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 6px;
+        }
+
+        label .required-mark {
+            color: #dc2626;
+            margin-left: 2px;
+        }
+
+        /* ===== Inputs ===== */
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1.5px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            color: #1a2a1a;
+            background: #f9fafb;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #16a34a;
+            box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.14);
+            background: #ffffff;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        /* ===== Radio & Checkbox ===== */
+        .radio-group,
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 20px;
+            margin-top: 4px;
+        }
+
+        .radio-group label,
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-weight: 400;
+            font-size: 0.93rem;
+            cursor: pointer;
+            color: #374151;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            accent-color: #16a34a;
+            width: 17px;
+            height: 17px;
+            cursor: pointer;
+        }
+
+        /* ===== Submit Button ===== */
+        .btn-submit {
+            display: block;
+            width: 100%;
+            padding: 13px;
+            background: linear-gradient(90deg, #15803d 0%, #22c55e 100%);
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 9px;
+            cursor: pointer;
+            letter-spacing: 0.3px;
+            transition: opacity 0.2s, transform 0.1s;
+            margin-top: 6px;
+        }
+
+        .btn-submit:hover {
+            opacity: 0.92;
+            transform: translateY(-1px);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        /* ===== Footer Link ===== */
+        .footer-link {
+            text-align: center;
+            margin-top: 16px;
+            font-size: 0.88rem;
+            color: #6b7280;
+        }
+
+        .footer-link a {
+            color: #16a34a;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== Helper hint ===== */
+        .hint {
+            font-size: 0.78rem;
+            color: #9ca3af;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===========================
+     HEADER: Logo + Judul
+=========================== -->
+    <div class="page-wrapper">
+        <div class="header">
+            <!-- Elemen multimedia: gambar logo kampus -->
+            <img class="logo" src="https://www.inventory.stitek.ac.id/assets/images/stitek.png"
+                alt="Logo Kampus STITEK Bontang">
+            <!-- Heading utama h1 sesuai ketentuan -->
+            <h1>Formulir Pendaftaran Mahasiswa Baru</h1>
+            <p class="sub">Lengkapi semua data dengan benar dan jujur</p>
+        </div>
+
+        <!-- ===========================
+       KARTU FORMULIR UTAMA
+  =========================== -->
+        <div class="card">
+            <form action="#" method="post" id="form-pendaftaran">
+
+                <!-- =====================
+           FIELDSET 1: Data Pribadi
+      ===================== -->
+                <!-- Fieldset & legend untuk mengelompokkan bagian form -->
+                <fieldset>
+                    <legend>📋 Data Pribadi</legend>
+
+                    <!-- Input Nama Lengkap (wajib diisi) -->
+                    <div class="form-group">
+                        <label for="nama">
+                            Nama Lengkap <span class="required-mark">*</span>
+                        </label>
+                        <input type="text" id="nama" name="nama_lengkap" placeholder="Contoh: Budi Santoso" required>
+                        <!-- Komentar: input nama lengkap, wajib diisi -->
+                    </div>
+
+                    <!-- Input Email (wajib diisi, bertipe email) -->
+                    <div class="form-group">
+                        <label for="email">
+                            Alamat Email <span class="required-mark">*</span>
+                        </label>
+                        <input type="email" id="email" name="email" placeholder="Contoh: budi@email.com" required>
+                        <p class="hint">Gunakan email aktif yang sering Anda cek.</p>
+                    </div>
+
+                    <!-- Radio Button: Jenis Kelamin (wajib dipilih) -->
+                    <div class="form-group">
+                        <label>Jenis Kelamin <span class="required-mark">*</span></label>
+                        <!-- Komentar: radio button pilihan jenis kelamin -->
+                        <div class="radio-group">
+                            <label>
+                                <input type="radio" name="jenis_kelamin" value="pria" required>
+                                Pria
+                            </label>
+                            <label>
+                                <input type="radio" name="jenis_kelamin" value="wanita">
+                                Wanita
+                            </label>
+                        </div>
+                    </div>
+
+                </fieldset>
+
+                <!-- =====================
+           FIELDSET 2: Hobi
+      ===================== -->
+                <!-- Komentar: fieldset untuk data hobi mahasiswa -->
+                <fieldset>
+                    <legend>🎯 Hobi</legend>
+
+                    <!-- Checkbox: Pilihan Hobi (minimal 2 pilihan) -->
+                    <div class="form-group">
+                        <label>Pilih Hobi Anda <span class="required-mark">*</span></label>
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" name="hobi" value="membaca">
+                                Membaca
+                            </label>
+                            <label>
+                                <input type="checkbox" name="hobi" value="olahraga">
+                                Olahraga
+                            </label>
+                            <label>
+                                <input type="checkbox" name="hobi" value="musik">
+                                Musik
+                            </label>
+                            <label>
+                                <input type="checkbox" name="hobi" value="menulis">
+                                Menulis
+                            </label>
+                            <label>
+                                <input type="checkbox" name="hobi" value="memasak">
+                                Memasak
+                            </label>
+                        </div>
+                    </div>
+
+                </fieldset>
+
+                <!-- =====================
+           FIELDSET 3: Data Akademik
+      ===================== -->
+                <!-- Komentar: fieldset untuk data akademik dan jurusan -->
+                <fieldset>
+                    <legend>🎓 Data Akademik</legend>
+
+                    <!-- Dropdown / Select: Pilihan Jurusan (minimal 3 pilihan) -->
+                    <div class="form-group">
+                        <label for="jurusan">
+                            Pilih Jurusan <span class="required-mark">*</span>
+                        </label>
+                        <select id="jurusan" name="jurusan" required>
+                            <option value="" disabled selected>-- Pilih Jurusan --</option>
+                            <!-- Komentar: opsi jurusan yang tersedia -->
+                            <option value="ti">Teknik Informatika</option>
+                            <option value="manajemen">Manajemen</option>
+                            <option value="akuntansi">Akuntansi</option>
+                            <option value="hukum">Ilmu Hukum</option>
+                            <option value="teknik_sipil">Teknik Sipil</option>
+                        </select>
+                    </div>
+
+                    <!-- Textarea: Alamat Lengkap (opsional) -->
+                    <div class="form-group">
+                        <label for="alamat">Alamat Lengkap <em
+                                style="font-weight:400;color:#9ca3af;">(opsional)</em></label>
+                        <!-- Komentar: textarea untuk alamat lengkap, tidak wajib diisi -->
+                        <textarea id="alamat" name="alamat"
+                            placeholder="Contoh: Jl. Merdeka No. 10, Bontang, Kalimantan Timur"></textarea>
+                    </div>
+
+                </fieldset>
+
+                <!-- Tombol Submit -->
+                <!-- Komentar: tombol untuk mengirim data formulir -->
+                <button type="submit" class="btn-submit">
+                    Kirim Pendaftaran
+                </button>
+
+            </form><!-- end form -->
+        </div><!-- end card -->
+
+        <!-- ===========================
+       LINK INFO KAMPUS (di bawah formulir)
+  =========================== -->
+        <div class="footer-link">
+            Informasi lebih lanjut kunjungi
+            <a href="https://bontangpost.id/wp-content/uploads/2018/03/Gedung-baru-STITEK-Bontang-berlantai-4-lebih-Modern-nyaman-dan-berada-pada-lokasi-yang-strategis.-Fasilitas-yang-dimiliki-sangat-mendukung-perkuliahan-lengkap-dengan-AC-dan-Free-Wifi.jpg"
+                target="_blank" rel="noopener noreferrer">Halaman Informasi Kampus</a>
+        </div>
+
+    </div><!-- end page-wrapper -->
+
+</body>
+
+</html>
